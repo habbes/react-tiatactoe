@@ -26,7 +26,10 @@ class Game extends React.Component {
   }
 
   handleClick (i) {
-    const history = this.state.history;
+    const step = this.state.stepNumber;
+    // forget all steps that were already played after this
+    // basically altering the fate of the future through time travel
+    const history = this.state.history.slice(0, step + 1);
     const current = history[history.length - 1];
     const squares = [...current.squares];
     if (calculateWinner(squares) || squares[i]) {
